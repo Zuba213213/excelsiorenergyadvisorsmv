@@ -1,56 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Excelsior Energy Advisors — Marketing Vault</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excelsior Energy Advisors — Marketing Vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --navy-deep:  #0B1E36;
+      --navy-mid:   #16304F;
+      --navy-soft:  #28466D;
+      --steel:      #3E6690;
+      --steel-br:   #5C88B8;
+      --silver:     #B7C2CE;
+      --silver-lt:  #D7DEE5;
+      --silver-xlt: #E9EFF4;
+      --grad-start: #1B3A63;
+      --grad-end:   #0B1E36;
+      --white:      #FFFFFF;
+      --off-white:  #F5F7F9;
+      --charcoal:   #101E30;
+      --mid:        #4C5C70;
+      --light:      #D7DEE5;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--off-white);
+      color: var(--charcoal);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background: linear-gradient(130deg, var(--grad-start) 0%, var(--navy-mid) 45%, var(--grad-end) 100%);
+      padding: 72px 48px 80px;
+      overflow: hidden;
+    }
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .hero::before { width: 320px; height: 320px; top: -80px; right: -60px; }
+    .hero::after  { width: 180px; height: 180px; bottom: -40px; left: 30%; }
+
+    .circle-deco { position: absolute; border-radius: 50%; background: rgba(183,194,206,0.14); pointer-events: none; }
+    .c1 { width: 56px;  height: 56px;  top: 32px;    right: 200px; }
+    .c2 { width: 30px;  height: 30px;  top: 80px;    right: 260px; }
+    .c3 { width: 42px;  height: 42px;  bottom: 48px; right: 120px; }
+    .c4 { width: 22px;  height: 22px;  bottom: 60px; left: 48px;   }
+
+    .icon-cluster { position: absolute; top: 28px; right: 48px; display: flex; align-items: flex-end; gap: 6px; opacity: 0.6; }
+    .icon-cluster span { display:block; width:12px; background:var(--silver); border-radius:1px; }
+    .icon-cluster span:nth-child(1){ height:12px; }
+    .icon-cluster span:nth-child(2){ height:22px; }
+    .icon-cluster span:nth-child(3){ height:34px; background:var(--steel-br); }
+
+    .hero-collab {
+      font-family:'IBM Plex Mono',monospace;
+      font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(183,194,206,0.75); margin-bottom: 28px;
+    }
+    .hero-logo {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(52px, 7vw, 80px); font-weight: 500; color: var(--white);
+      line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-sub {
+      font-family:'IBM Plex Mono',monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(183,194,206,0.8); margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-desc {
+      max-width: 440px; font-size: 14.5px; font-weight: 300; color: rgba(255,255,255,0.82); line-height: 1.7;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-quote {
+      margin-top: 36px; padding: 14px 20px; border-left: 2px solid rgba(255,255,255,0.4);
+      font-family: 'Fraunces', serif; font-style: italic; font-size: 17px;
+      color: rgba(255,255,255,0.92); max-width: 460px; line-height: 1.5;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    /* ─── MAIN ───────────────────────────────────────── */
+    .main { max-width: 1100px; margin: 0 auto; padding: 56px 48px 80px; }
+
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+    .section-label { font-family:'IBM Plex Mono',monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); white-space: nowrap; }
+    .section-rule { flex: 1; height: 1px; background: var(--light); }
+
+    /* ─── GRID ───────────────────────────────────────── */
+    .vault-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+
+    .vcard {
+      background: var(--white);
+      border: 1px solid rgba(62,102,144,0.16);
+      border-radius: 12px;
+      padding: 28px 28px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      animation: fadeUp 0.5s ease forwards;
+      opacity: 0;
+    }
+    .vcard:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(11,30,54,0.14); border-color: rgba(62,102,144,0.5); }
+    .vcard::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--steel), var(--silver));
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .vcard:hover::before { opacity: 1; }
+
+    .vcard--hero   { grid-column: span 12; }
+    .vcard--wide   { grid-column: span 7; }
+    .vcard--narrow { grid-column: span 5; }
+    .vcard--half   { grid-column: span 6; }
+
+    .vcard--featured {
+      background: linear-gradient(130deg, #16304F 0%, #28466D 100%);
+      border-color: transparent; color: var(--white);
+    }
+    .vcard--featured:hover { box-shadow: 0 16px 48px rgba(22,48,79,0.35); border-color: transparent; }
+    .vcard--featured::before { background: linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1)); }
+
+    .vcard--website {
+      background: linear-gradient(130deg, #2C4F6B 0%, #3E6690 100%);
+      border-color: transparent; color: var(--white);
+    }
+    .vcard--website:hover { box-shadow: 0 16px 48px rgba(44,79,107,0.35); border-color: transparent; transform: translateY(-3px); }
+    .vcard--website::before { background: linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)); }
+
+    .card-num {
+      font-family:'IBM Plex Mono',monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--steel); margin-bottom: 14px;
+    }
+    .vcard--featured .card-num, .vcard--website .card-num { color: rgba(255,255,255,0.55); }
+
+    .card-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; line-height: 1.2; color: var(--navy-deep); margin-bottom: 10px; }
+    .vcard--featured .card-title { color: var(--white); font-size: 26px; }
+    .vcard--website  .card-title { color: var(--white); font-size: 22px; }
+
+    .card-desc { font-size: 13.5px; font-weight: 300; color: var(--mid); line-height: 1.65; flex: 1; }
+    .vcard--featured .card-desc, .vcard--website .card-desc { color: rgba(255,255,255,0.72); }
+
+    .card-tag {
+      display: inline-flex; align-items: center; margin-top: 20px; padding: 4px 10px; border-radius: 4px;
+      font-family:'IBM Plex Mono',monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase;
+      background: var(--silver-xlt); color: var(--steel); align-self: flex-start;
+    }
+    .vcard--featured .card-tag { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+    .vcard--website  .card-tag { background: rgba(255,255,255,0.16); color: rgba(255,255,255,0.88); }
+
+    .card-draft-badge {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 3px 8px; border-radius: 4px;
+      font-family:'IBM Plex Mono',monospace;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); align-self: flex-start;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .card-draft-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #E8B84B; flex-shrink: 0; }
+
+    .card-route {
+      margin-top: 12px; font-size: 11px; font-weight: 400; color: var(--steel); letter-spacing: 0.03em;
+      opacity: 0; transform: translateY(4px); transition: opacity 0.2s ease, transform 0.2s ease;
+      font-family:'IBM Plex Mono',monospace;
+    }
+    .vcard:hover .card-route { opacity: 1; transform: translateY(0); }
+    .vcard--featured .card-route, .vcard--website .card-route { color: rgba(255,255,255,0.5); }
+
+    .card-arrow {
+      position: absolute; bottom: 24px; right: 24px; width: 32px; height: 32px; border-radius: 50%;
+      background: var(--silver-xlt); display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--steel);
+      opacity: 0; transform: translateX(-4px); transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .vcard:hover .card-arrow { opacity: 1; transform: translateX(0); }
+    .vcard--featured .card-arrow, .vcard--website .card-arrow { background: rgba(255,255,255,0.16); color: rgba(255,255,255,0.9); }
+
+    .vcard:nth-child(1) { animation-delay: 0.05s; }
+    .vcard:nth-child(2) { animation-delay: 0.10s; }
+    .vcard:nth-child(3) { animation-delay: 0.15s; }
+    .vcard:nth-child(4) { animation-delay: 0.20s; }
+    .vcard:nth-child(5) { animation-delay: 0.25s; }
+    .vcard:nth-child(6) { animation-delay: 0.30s; }
+
+    .grid-divider { grid-column: span 12; display: flex; align-items: baseline; gap: 16px; padding-top: 16px; }
+    .grid-divider .section-label { color: var(--mid); }
+    .grid-divider .section-rule  { background: var(--light); }
+
+    .footer {
+      border-top: 1px solid var(--light); padding: 28px 48px; max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-left { font-size: 12px; font-weight: 300; color: var(--mid); }
+    .footer-left strong { font-weight: 600; color: var(--navy-deep); }
+    .footer-badge {
+      font-family:'IBM Plex Mono',monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 4px; background: var(--silver-xlt); color: var(--steel);
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .hero  { padding: 48px 28px 64px; }
+      .main  { padding: 40px 28px 64px; }
+      .footer { padding: 24px 28px; }
+      .vcard--wide, .vcard--narrow, .vcard--half { grid-column: span 12; }
+      .icon-cluster { display: none; }
+    }
+    @media (max-width: 600px) {
+      .vcard--hero { grid-column: span 12; }
+      .hero-logo   { font-size: 44px; }
+    }
+  </style>
 </head>
+
 <body>
-<header class="mast">
-  <div class="wrap">
-    <p class="eyebrow"><span class="dot"></span>Excelsior Energy Advisors</p>
-    <h1>Marketing Vault</h1>
-    <div class="ascend"><span></span><span></span><span></span></div>
-    <p class="sub">The single reference point for the brand, the client, and the voice — prepared by JRZ Consulting Solutions.</p>
-  </div>
-</header>
 
-<div class="trust">
-  <div class="wrap">
-    <div class="trust-item"><span class="num">20+ yrs</span><span class="desc">Joe Zubillaga's background, including Vistra Corp — the foundation everything else is built on</span></div>
-    <div class="trust-item"><span class="num">$0</span><span class="desc">cost to the client — the trust story repeated across every section</span></div>
-    <div class="trust-item"><span class="num">TX</span><span class="desc">based, serving Texas's Hispanic community first, built to expand</span></div>
-  </div>
-</div>
+  <header class="hero">
+    <div class="circle-deco c1"></div>
+    <div class="circle-deco c2"></div>
+    <div class="circle-deco c3"></div>
+    <div class="circle-deco c4"></div>
+    <div class="icon-cluster"><span></span><span></span><span></span></div>
 
-<main>
-  <div class="wrap">
-    <p style="margin-top:36px;">Excelsior Energy Advisors is a veteran-led brokerage — Joe shops the Texas energy market on the client's side of the table, at no cost to them, starting with Texas's Hispanic households and small businesses. Four pillars carry that idea from positioning through to the words on the page. This is the source of truth for excelsiorenergyadvisors.com and everything built after it.</p>
+    <div class="hero-collab">JRZ Consulting Solutions &nbsp;&times;&nbsp; Excelsior Energy Advisors</div>
+    <div class="hero-logo">Excelsior</div>
+    <div class="hero-sub">Energy Advisors — Texas Brokerage</div>
+    <p class="hero-desc">
+      Central marketing repository. Single source of truth for everything produced on behalf of Excelsior Energy Advisors.
+    </p>
+    <blockquote class="hero-quote">
+      "The independent broker who already knows how the market works — and uses that knowledge on the client's side of the table."
+    </blockquote>
+  </header>
 
-    <div class="divider-mark"><div class="ascend"><span></span><span></span><span></span></div></div>
+  <main class="main">
 
-    <a class="pillar" href="brand/">
-      <span class="pnum">01 · Brand Positioning & Pricing</span>
-      <h3>Who Excelsior is, and why the model works</h3>
-      <p class="quote">"The independent broker who already knows how the deregulated energy market works — and uses that knowledge on the client's side of the table, not the provider's."</p>
-      <p class="desc">Joe's background, the free-to-client brokerage model, the service area, and the roadmap from energy into cable, internet, and financial services.</p>
-      <span class="go">Read the full section →</span>
-    </a>
+    <div class="section-header">
+      <span class="section-label">Strategy Documents</span>
+      <div class="section-rule"></div>
+    </div>
 
-    <a class="pillar" href="ICP/">
-      <span class="pnum">02 · Ideal Client Profile</span>
-      <h3>Who Excelsior is actually built to serve</h3>
-      <p class="quote">"They've been burned, or know someone who's been burned, by aggressive energy sales tactics — and they respond to a trusted, in-community advisor more than a call center or a stranger at the door."</p>
-      <p class="desc">Three tiers — the household, the small business owner, and the growing commercial account — and what each is really paying for.</p>
-      <span class="go">Read the full section →</span>
-    </a>
+    <div class="vault-grid">
 
-    <a class="pillar" href="brand-guidelines/">
-      <span class="pnum">03 · Brand Design Guidelines</span>
-      <h3>The navy-and-silver system, precisely</h3>
-      <p class="quote">"Navy carries authority, steel carries action. Silver is never used for text a client needs to read easily — dividers and labels only."</p>
-      <p class="desc">The full color palette with hex codes, the Fraunces / Inter / IBM Plex Mono type system, the ascending mark, and usage rules.</p>
-      <span class="go">Read the full section →</span>
-    </a>
-    
+      <a class="vcard vcard--featured vcard--hero" href="brand/">
+        <div class="card-num">01 — Brand Guide</div>
+        <div class="card-title">Positioning & Pricing</div>
+        <div class="card-desc">
+          Single source of truth. Joe Zubillaga's background, the brokerage model, the "free to you" positioning, the Texas service area, and the roadmap into cable, internet, and financial services. Mandatory starting point for any output.
+        </div>
+        <div class="card-tag">Foundation Document</div>
+        <div class="card-route">/brand</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+
+      <a class="vcard vcard--wide" href="ICP/">
+        <div class="card-num">02 — Audience</div>
+        <div class="card-title">Ideal Client Profile</div>
+        <div class="card-desc">
+          Three client tiers, the emotional context they carry into a first conversation, and what each is actually paying for. The foundation for all copy and outreach.
+        </div>
+        <div class="card-tag">Strategy</div>
+        <div class="card-route">/ICP</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+
+      <a class="vcard vcard--narrow" href="brand-guidelines/">
+        <div class="card-num">03 — Design</div>
+        <div class="card-title">Brand Design Guidelines</div>
+        <div class="card-desc">
+          The navy/silver palette with hex codes, the type system, the ascending mark, and usage rules.
+        </div>
+        <div class="card-tag">Design</div>
+        <div class="card-route">/brand-guidelines</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+
+      <a class="vcard vcard--half" href="tone-and-copy/">
+        <div class="card-num">04 — Communication</div>
+        <div class="card-title">Tone & Copy</div>
+        <div class="card-desc">
+          The core voice, bilingual-by-design principles, sample copy by client tier, and what Excelsior never sounds like.
+        </div>
+        <div class="card-tag">Copy</div>
+        <div class="card-route">/tone-and-copy</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+
+      <a class="vcard vcard--half" href="client-journey/">
+        <div class="card-num">05 — Process</div>
+        <div class="card-title">Client Journey</div>
+        <div class="card-desc">
+          Six stages from Discovery to Referral, and what the website has to do at each one.
+        </div>
+        <div class="card-tag">Process</div>
+        <div class="card-route">/client-journey</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+
+      <div class="grid-divider">
+        <span class="section-label">Deliverables</span>
+        <div class="section-rule"></div>
+      </div>
+
+      <a class="vcard vcard--website vcard--hero" href="https://excelsiorenergyadvisors.com">
+        <div class="card-num">06 — Website</div>
+        <div class="card-title">Homepage — Draft 1</div>
+        <div class="card-desc">
+          First draft of the public Excelsior Energy Advisors homepage. Copy rewritten from the Tone & ICP documents. Navy/steel/silver system applied throughout — hero, trust strip, three-step journey, ICP tiers, and founder section.
+        </div>
+        <div class="card-tag">Website</div>
+        <div class="card-draft-badge">Draft 1 — In Review</div>
+        <div class="card-route">excelsiorenergyadvisors.com</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <strong>Excelsior Energy Advisors</strong> &nbsp;&times;&nbsp; JRZ Consulting Solutions &nbsp;—&nbsp; Internal Use. Do not distribute without authorization.
+    </div>
+    <div class="footer-badge">Marketing Vault</div>
+  </footer>
+
+</body>
+</html>
